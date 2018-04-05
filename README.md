@@ -1,9 +1,18 @@
 
-# Ubuntu Server Desktop
-
-## Specifications
-* Docker Community Edition Version 18.03.0-ce-mac59 (23608)
+# Ubuntu Desktop
 
 ## Setup
-* Build it - Run `docker build -t ubuntu-server-desktop .`
-* Run it - Run `docker run -it --rm -p 5901:5901 -e USER=root ubuntu-server-desktop bash -c "vncserver :1 -geometry 1280x800 -depth 24 && tail -F /root/.vnc/*.log"'
+* Build it
+  * Run: `docker build -t ubuntu-with-desktop .`
+* Run it
+  * Run: `docker run -itd -p 5901:5901 -e PASSWORD=<Your desired password> ubuntu-with-desktop`
+* SSH into it
+  * Run `docker exec -it <Container Name> /bin/bash`
+
+## View
+* vnc://<host>:5901 via VNC client
+
+## Notes
+* By default, the password will be created randomly.
+* To find the password, please using the following command: `docker exec $CONTAINER_ID cat /home/ubuntu/password.txt`
+* You can use this password to log in into this container.
