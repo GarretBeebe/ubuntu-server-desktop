@@ -11,8 +11,9 @@ if [ ! -f $HOME/.vnc/passwd ] ; then
 
     # Set up vncserver
     su $USER -c "mkdir $HOME/.vnc && echo '$PASSWORD' | vncpasswd -f > $HOME/.vnc/passwd && chmod 600 $HOME/.vnc/passwd && touch $HOME/.Xresources"
+    cp $HOME/.xstartup $HOME/.vnc/xstartup
+    rm $HOME/.xstartup
     chown -R $USER:$USER $HOME
-
 else
 
     VNC_PID=`find $HOME/.vnc -name '*.pid'`
